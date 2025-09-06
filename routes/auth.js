@@ -3,9 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const authMiddleware = require('../middleware/auth'); // JWT verification middleware
+const authMiddleware = require('../middleware/auth'); 
 
-// ================= REGISTER =================
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -29,7 +28,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// ================= LOGIN =================
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -49,7 +47,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// ================= PROFILE - Protected =================
 router.get('/profile', authMiddleware, async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id, { attributes: ['id', 'name', 'email'] });
