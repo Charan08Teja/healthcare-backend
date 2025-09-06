@@ -5,12 +5,6 @@ const Mapping = require('../models/Mapping');
 const Patient = require('../models/Patient');
 const Doctor = require('../models/Doctor');
 
-// Make sure associations are defined somewhere in your project, for example:
-// Patient.hasMany(Mapping, { foreignKey: 'patientId' });
-// Mapping.belongsTo(Patient, { foreignKey: 'patientId' });
-// Doctor.hasMany(Mapping, { foreignKey: 'doctorId' });
-// Mapping.belongsTo(Doctor, { foreignKey: 'doctorId' });
-
 // POST /api/mappings/ - Assign doctor to patient
 router.post('/', authMiddleware, async (req, res) => {
   const { patientId, doctorId } = req.body;
@@ -19,15 +13,15 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 
   try {
-    // Check if patient exists
+   
     const patient = await Patient.findByPk(patientId);
     if (!patient) return res.status(404).json({ message: 'Patient not found' });
 
-    // Check if doctor exists
+  
     const doctor = await Doctor.findByPk(doctorId);
     if (!doctor) return res.status(404).json({ message: 'Doctor not found' });
 
-    // Prevent duplicate mapping
+
     const existing = await Mapping.findOne({ where: { patientId, doctorId } });
     if (existing) return res.status(400).json({ message: 'Mapping already exists' });
 
