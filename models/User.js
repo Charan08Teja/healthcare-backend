@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database'); // same instance as server.js
+const sequelize = require('../config/database'); 
 
 const User = sequelize.define('User', {
   name: {
@@ -19,8 +19,8 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
 }, {
-  tableName: 'users', // explicitly set table name
-  timestamps: true,   // createdAt and updatedAt
+  tableName: 'users',
+  timestamps: true,   
 });
 
 module.exports = User;
