@@ -32,7 +32,7 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-// GET /api/patients/:id - Get single patient by ID (only if owned)
+// GET /api/patients/:id - Get single patient by ID 
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
     const patient = await Patient.findOne({
@@ -46,7 +46,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// PUT /api/patients/:id - Update patient (only if owned)
+// PUT /api/patients/:id - Update patient 
 router.put('/:id', authMiddleware, async (req, res) => {
   try {
     const patient = await Patient.findOne({
@@ -62,7 +62,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// DELETE /api/patients/:id - Delete patient (only if owned)
+// DELETE /api/patients/:id - Delete patient 
 router.delete('/:id', authMiddleware, async (req, res) => {
   try {
     const patient = await Patient.findOne({
